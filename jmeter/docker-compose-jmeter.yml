@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  jmeter:
+    image: justb4/jmeter:latest
+    container_name: jmeter
+    network_mode: "host"
+    command: -n -t /mnt/jmeter/Pi2_parametrised.jmx -Jusers=USERS_PLACEHOLDER -Jiteration=ITERATION_PLACEHOLDER -l /mnt/jmeter/ITERATION_PLACEHOLDER/USERS_PLACEHOLDER.csv
+    volumes:
+      - ./Pi2_parametrised.jmx:/mnt/jmeter/Pi2_parametrised.jmx:ro
+      - ./:/mnt/jmeter
+    mem_limit: 512m
+    cpus: 2.5
